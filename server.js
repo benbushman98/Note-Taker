@@ -14,11 +14,6 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
-// GET Route for homepage
-app.get('/', (req, res) =>
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-// END GET Route for homepage
 
 // GET Route for notes page
 app.get('/notes', (req, res) =>
@@ -52,7 +47,7 @@ const writeToDatabase = (file, body) => {
 app.get('/api/notes', (req, res) => {
     const filePath = ('./db/db.json')
     readDatabase(filePath).then((data) => res.json(JSON.parse(data)));
-} )
+})
 // END GET request to render notes to page
 
 // ADD TO NOTES
@@ -68,9 +63,17 @@ app.post('/api/notes', (req, res) => {
 
         appendToNote(newNote, './db/db.json')
 
+
+        res.json(newNote)
     }
 });
 // END ADD TO NOTES
+
+// Wildcard redirect
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+// End Wildcard redirect
 
 //  Listen to Port
 app.listen(PORT, () =>
