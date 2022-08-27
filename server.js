@@ -1,7 +1,8 @@
 const express = require('express');
 const fs = require('fs')
+const util = require("util");
 const path = require('path');
-const uuid = require('./helpers/uuid')
+const id = require('./helpers/uuid')
 
 const PORT = process.env.PORT || 3001;
 
@@ -25,6 +26,10 @@ app.get('/notes', (req, res) =>
 );
 // END GET Route for notes page
 
+// READ FROM DATABASE
+const readDatabase = util.promisify(fs.readFile);
+// END READ FROM DATABASE
+
 // APPEND AND WRITE TO DATABASES
 const appendToNote = (body, database) => {
     fs.readFile(database, 'utf8', (err, data) => {
@@ -43,6 +48,13 @@ const writeToDatabase = (file, body) => {
 }
 // END APPEND AND WRITE TO DATABASES
 
+// GET request to render notes to page
+app.get('/api/notes', (req, res) => {
+    const filePath = ('./db/db.json')
+    readDatabase(filePath).then((data) => res.json(JSON.parse(data)));
+} )
+// END GET request to render notes to page
+
 // ADD TO NOTES
 app.post('/api/notes', (req, res) => {
     const { title, text } = req.body;
@@ -51,7 +63,7 @@ app.post('/api/notes', (req, res) => {
         let newNote = {
             title,
             text,
-            note_id: uuid()
+            note_id: id()
         };
 
         appendToNote(newNote, './db/db.json')
