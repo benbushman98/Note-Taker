@@ -3,16 +3,11 @@ const fs = require('fs')
 const util = require("util");
 const path = require('path');
 const id = require('./helpers/uuid');
-const { notDeepEqual } = require('assert');
-
 const PORT = process.env.PORT || 3001;
-
 const app = express();
 
 // MIDDLEWARE FOR PARSING JSON
 app.use(express.json());
-
-
 app.use(express.static('public'));
 
 
@@ -54,17 +49,13 @@ app.get('/api/notes', (req, res) => {
 // ADD TO NOTES
 app.post('/api/notes', (req, res) => {
     const { title, text } = req.body;
-
     if (req.body) {
         let newNote = {
             title,
             text,
             id: id()
         };
-
         appendToNote(newNote, './db/db.json')
-
-
         res.json(newNote)
     }
 });
