@@ -1,7 +1,7 @@
 # Note Taker
 
 ## Description
-This project was developed with node.js and OOP (Object Oriented Programming). When you need quick information on your team, come to the team generator. When you run node index.js in the command line, you are presented with prompts to help you generate your team in a neat and conscise HTML file. You will be able to add a Manager of the team, team engineers, and team interns with their appropriate information. For addition information on how to use this project, use the video walkthrough link below.
+This project was developed with express.js. When you need a quick note taking application, look no further than the Note-Taker! When you use the application, you will find an easy to navigate site full of power. Write to your database to store your notes and use that to stay functional and organized. This application was deployed using Heroku. For additional information, please refer to my contact information on GitHub. 
 
 ## Screenshot of Working Application
 ![Photo of homepage](assets/img/Note-Taker-homepage.png)
