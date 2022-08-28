@@ -1,41 +1,7 @@
 [
-    {
-        "title": "Test Title",
-        "text": "Test text"
-    },
-    {
-        "title": "asdf",
-        "text": "asdf",
-        "note_id": "d902"
-    },
-    {
-        "title": "asdf",
-        "text": "asdf",
-        "note_id": "1043"
-    },
-    {
-        "title": "asdf",
-        "text": "asdf",
-        "note_id": "f76a"
-    },
-    {
-        "title": "awega",
-        "text": "asgda",
-        "note_id": "2a24"
-    },
-    {
-        "title": "sgdfhj",
-        "text": "sdfhsdfh",
-        "note_id": "d956"
-    },
-    {
-        "title": "test",
-        "text": "testtestest",
-        "note_id": "e3f2"
-    },
-    {
-        "title": "testestest",
-        "text": "esttse",
-        "note_id": "d427"
-    }
+  {
+    "title": "sdfhsdfh",
+    "text": "sdfh",
+    "id": "bf79"
+  }
 ]

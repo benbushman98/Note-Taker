@@ -2,7 +2,8 @@ const express = require('express');
 const fs = require('fs')
 const util = require("util");
 const path = require('path');
-const id = require('./helpers/uuid')
+const id = require('./helpers/uuid');
+const { notDeepEqual } = require('assert');
 
 const PORT = process.env.PORT || 3001;
 
@@ -38,7 +39,7 @@ const appendToNote = (body, database) => {
     });
 };
 const writeToDatabase = (file, body) => {
-    fs.writeFile(file, JSON.stringify(body, null, 4), (err) =>
+    fs.writeFile(file, JSON.stringify(body, null, 2), (err) =>
         err ? console.error(err) : console.log('\nAdded to Notes'))
 }
 // END APPEND AND WRITE TO DATABASES
@@ -58,7 +59,7 @@ app.post('/api/notes', (req, res) => {
         let newNote = {
             title,
             text,
-            note_id: id()
+            id: id()
         };
 
         appendToNote(newNote, './db/db.json')
@@ -68,6 +69,24 @@ app.post('/api/notes', (req, res) => {
     }
 });
 // END ADD TO NOTES
+
+// DELETE NOTE
+app.delete('/api/notes/:id', function (req, res) {
+    const id = req.params.id;
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        const removeNote = JSON.parse(data).filter(newNote => newNote.id !== id);
+        fs.writeFile('./db/db.json', JSON.stringify(removeNote, null, 2), (err) => {
+            if (err) {
+                console.log(err);
+            }
+            res.json(removeNote)
+        })
+    });
+})
+// END DELETE NOTE
 
 // Wildcard redirect
 app.get('*', (req, res) =>
