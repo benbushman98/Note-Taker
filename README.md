@@ -6,4 +6,4 @@ This project was developed with node.js and OOP (Object Oriented Programming). W
 ## Screenshot of working application
 
 ## Link to deployed application
-![Photo of generated team](src/img/Your-Team.png)
+https://limitless-river-82628.herokuapp.com/
