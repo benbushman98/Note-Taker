@@ -78,7 +78,7 @@ app.delete('/api/notes/:id', function (req, res) {
             console.log(err);
         }
         const removeNote = JSON.parse(data).filter(newNote => newNote.id !== id);
-        fs.writeFile('./db/db.json', JSON.stringify(removeNote, null, 2), (err) => {
+        fs.writeFile('./db/db.json', JSON.stringify(removeNote), (err) => {
             if (err) {
                 console.log(err);
             }
